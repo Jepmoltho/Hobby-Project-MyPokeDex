@@ -1,12 +1,13 @@
-import logo from "./logo.svg";
 import "./App.css";
 import UserRegistration from "./UserRegistration";
-import Parse from "parse/dist/parse.min.js";
+import UserLogin from "./UserLogin";
 
 function App() {
   return (
     <div className="App">
       <UserRegistration />
+      <hr />
+      <UserLogin />
     </div>
   );
 }
