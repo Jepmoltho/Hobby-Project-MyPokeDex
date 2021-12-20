@@ -32,6 +32,7 @@ function UserRegistration() {
 
   return (
     <>
+      <h2>User Registration</h2>
       <input
         style={styles.input}
         value={username}
@@ -47,6 +48,8 @@ function UserRegistration() {
       ></input>
       <br />
       <button onClick={doUserRegistration}>Create user</button>
+      <br />
+      <br />
     </>
   );
 }
