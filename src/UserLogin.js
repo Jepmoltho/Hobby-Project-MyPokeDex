@@ -39,28 +39,54 @@ function UserLogin() {
     }
   };
 
+  const doUserLogOut = async function () {
+    try {
+      await Parse.User.logOut();
+      // To verify that current user is now empty, currentAsync can be used
+      const currentUser = await Parse.User.current();
+      if (currentUser === null) {
+        alert("Succesfully logged out!");
+      }
+      // Update state variable holding current user
+      getCurrentUser();
+      return true; //Why do we need to return true and false in theese funcitons at the end?
+    } catch (error) {
+      alert("Error caught: ", error);
+      return false; //Why do we need to return true and false in theese funcitons at the end?
+    }
+  };
+
   //https://www.back4app.com/docs/react/working-with-users/react-login (BOOKMARK: STEP 3)
 
-  return (
-    <>
-      <h2>User login</h2>
-      <input
-        style={styles.input}
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        style={styles.input}
-        type="text"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={() => doUserLogin()} type="primary">
-        Log In
-      </button>
-    </>
-  );
+  if (currentUser === null) {
+    return (
+      <>
+        <h2>User login</h2>
+        <input
+          style={styles.input}
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          style={styles.input}
+          type="text"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button onClick={() => doUserLogin()} type="primary">
+          Log In
+        </button>
+      </>
+    );
+  } else if (currentUser !== null) {
+    return (
+      <>
+        <h1>Welcome {currentUser.get("username")}</h1>
+        <button onClick={() => doUserLogOut()}>Logout</button>
+      </>
+    );
+  }
 }
 
 const styles = {
