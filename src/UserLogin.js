@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import Parse from "parse";
 import "./App.css";
+import { useNavigate } from "react-router-dom";
+//import Dashboard from "./Dashboard";
 
 function UserLogin() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
@@ -83,6 +86,7 @@ function UserLogin() {
     return (
       <>
         <h1>Welcome {currentUser.get("username")}</h1>
+        <button onClick={() => navigate("/dashboard")}>Go to dashboard</button>
         <button onClick={() => doUserLogOut()}>Logout</button>
       </>
     );

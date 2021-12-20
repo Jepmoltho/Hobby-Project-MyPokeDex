@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import Parse from "parse";
+import { BrowserRouter as Router } from "react-router-dom";
 
 Parse.initialize(
   "DIZIpBQGZMyPSUqdca6GEfb5POe0sUfHNbtQ6Hzx",
@@ -14,7 +15,9 @@ Parse.serverURL = "https://parseapi.back4app.com/";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );
