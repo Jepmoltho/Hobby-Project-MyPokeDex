@@ -2,6 +2,8 @@ import Parse from "parse";
 import { useEffect, useState } from "react";
 import Header from "./Header";
 import { useNavigate } from "react-router-dom";
+import Card from "./Card";
+import Set from "./Set";
 //import { getBaseSet } from "../CardData";
 
 const baseset = [
@@ -108,14 +110,19 @@ function Dashboard() {
     return (
       <>
         <Header headline={currentUser.get("username") + "'s Pokédex"} />
-        <h2>Baseset</h2>
-        <div
-          className="collection"
-          style={{ height: "300px", backgroundColor: "gray" }}
-        >
-          {baseset.map((card) => (
+        <div className="collection">
+          {/* {baseset.map((card) => (
             <img src={card.path} style={{ height: "50%" }} />
-          ))}
+          ))} */}
+          {/* {baseset.map((card) => (
+            <Card path={card.path} />
+          ))} */}
+          <Set
+            name="Baseset"
+            cards={baseset.map((card) => (
+              <Card path={card.path} />
+            ))}
+          />
           {/* <ul>
             {baseset.map((card) => { //Notice the difference: If you point map into square branckets, it expects a function to  be called for each element. If you point into parenthesis, you can take properties of each element out and map them to components
               <li>
