@@ -116,21 +116,13 @@ function Dashboard() {
           {baseset.map((card) => (
             <img src={card.path} style={{ height: "50%" }} />
           ))}
-          {/*<getBaseSet /> */}
           {/* <ul>
-            {baseset.map((card) => {
+            {baseset.map((card) => { //Notice the difference: If you point map into square branckets, it expects a function to  be called for each element. If you point into parenthesis, you can take properties of each element out and map them to components
               <li>
                 <img src={card.path} />
               </li>;
             })}
           </ul> */}
-          {/*<img src={baseset[1].path} /> */}
-          {/* <getBaseSet></getBaseSet>
-          {getBaseSet()} /*}
-          {/* <img
-            src="/baseset/bulbasaur-base-set-bs-44.jpeg"
-            style={{ height: "50%" }}
-          /> */}
         </div>
         <br />
         <br />
