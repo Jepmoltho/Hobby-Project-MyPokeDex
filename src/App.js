@@ -1,8 +1,8 @@
 import "./App.css";
-import UserRegistration from "./UserRegistration";
-import UserLogin from "./UserLogin";
+import UserRegistration from "./Components/UserRegistration";
+import UserLogin from "./Components/UserLogin";
 import { Routes, Route } from "react-router-dom";
-import Dashboard from "./Dashboard";
+import Dashboard from "./Components/Dashboard";
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Parse from "parse";
-import "./App.css";
+import "../App.css";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 //import Dashboard from "./Dashboard";
