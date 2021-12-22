@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import Parse from "parse";
+import Header from "./Header";
+import { useNavigate } from "react-router-dom";
 
 function UserRegistration() {
+  const navigate = useNavigate("");
   const [username, setUsername] = useState("");
   const handleChangeUser = (e) => {
     setUsername(e.target.value);
@@ -32,32 +35,30 @@ function UserRegistration() {
 
   return (
     <>
-      <h2>User Registration</h2>
+      <Header headline="Welcome to my Pokédex" />
+      <h2>Create a user to get started</h2>
       <input
-        style={styles.input}
         value={username}
         placeholder={"Username"}
         onChange={handleChangeUser}
         //onChangeText={(text) => setUsername(text)}
-      ></input>
+      ></input>{" "}
       <input
-        style={styles.input}
         value={password}
         placeholder={"Password"}
         onChange={handleChangePassword}
       ></input>
       <br />
+      <br />
       <button onClick={doUserRegistration}>Create user</button>
       <br />
       <br />
+      <p style={{ display: "inline-block" }}>Already have a user?</p>{" "}
+      <p style={{ display: "inline-block" }} onClick={() => navigate("/login")}>
+        Continue to login
+      </p>
     </>
   );
 }
-
-const styles = {
-  input: {
-    margin: 50,
-  },
-};
 
 export default UserRegistration;
