@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+/*My CSS*/
+
+.header {
+  background-color: #61dafb;
+  padding-top: 60px;
+  padding-bottom: 30px;
+}
