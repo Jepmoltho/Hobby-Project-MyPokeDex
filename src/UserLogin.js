@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Parse from "parse";
 import "./App.css";
 import { useNavigate } from "react-router-dom";
+import Header from "./Header";
 //import Dashboard from "./Dashboard";
 
 function UserLogin() {
@@ -64,30 +65,41 @@ function UserLogin() {
   if (currentUser === null) {
     return (
       <>
-        <h2>User login</h2>
+        <Header headline="Welcome to MyPokédex" />
+        <h2>Login to continue</h2>
         <input
-          style={styles.input}
           type="text"
+          placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-        />
+        />{" "}
         <input
-          style={styles.input}
           type="text"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        <br />
+        <br />
         <button onClick={() => doUserLogin()} type="primary">
           Log In
         </button>
+        <br />
+        <br />
+        <p style={{ display: "inline-block" }}>Don't have a user?</p>{" "}
+        <p style={{ display: "inline-block" }} onClick={() => navigate("/")}>
+          Go back and register
+        </p>
       </>
     );
   } else if (currentUser !== null) {
     return (
       <>
-        <h1>Welcome {currentUser.get("username")}</h1>
+        {navigate("/dashboard")}
+        {/* Below is kept because it is an example of conditional rendering dependent on if the user is logget in or not*/}
+        {/* <h1>Welcome {currentUser.get("username")}</h1>
         <button onClick={() => navigate("/dashboard")}>Go to dashboard</button>
-        <button onClick={() => doUserLogOut()}>Logout</button>
+        <button onClick={() => doUserLogOut()}>Logout</button> */}
       </>
     );
   }

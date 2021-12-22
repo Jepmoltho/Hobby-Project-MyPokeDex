@@ -1,5 +1,7 @@
 import Parse from "parse";
 import { useEffect, useState } from "react";
+import Header from "./Header";
+import { doUserLogOut } from "./Data";
 
 function Dashboard() {
   //Next goal: Save some data on behalf of that user, and render it to the dashboard
@@ -18,7 +20,6 @@ function Dashboard() {
 
   if (currentUser === null) {
     //Nessesary, otherwise it crashes
-
     return (
       <>
         <p>Logging in - please hold</p>
@@ -28,7 +29,12 @@ function Dashboard() {
   if (currentUser !== null) {
     return (
       <>
-        <h1>This is your dashboard {currentUser.get("username")}</h1>
+        <Header headline={currentUser.get("username") + "'s Pokédex"} />
+        <h2>Baseset</h2>
+        <div
+          className="collection"
+          style={{ height: "300px", backgroundColor: "gray" }}
+        />
       </>
     );
   }
