@@ -54,6 +54,9 @@ const baseset = [
 //   );
 // }
 
+//To do. 1. Get the current users ID and save it in a pointer before saving data.
+//Could the cards database also just have a setID? Give all cards a setID.
+
 function Dashboard() {
   //Next goal: Save some data on behalf of that user, and render it to the dashboard
   const navigate = useNavigate();
@@ -90,6 +93,14 @@ function Dashboard() {
     }
   };
 
+  function handleClickSave() {}
+  const [userId, setUserId] = useState("");
+  var userPointer = {
+    __type: "Pointer",
+    className: "User",
+    objectId: userId,
+  };
+
   if (logOut === true) {
     return (
       <>
@@ -112,24 +123,14 @@ function Dashboard() {
         <Header headline={currentUser.get("username") + "'s Pokédex"} />
         <div className="collection">
           {/* {baseset.map((card) => (
-            <img src={card.path} style={{ height: "50%" }} />
-          ))} */}
-          {/* {baseset.map((card) => (
             <Card path={card.path} />
           ))} */}
           <Set
             name="Baseset"
             cards={baseset.map((card) => (
-              <Card path={card.path} />
+              <Card path={card.path} onClick={handleClickSave} />
             ))}
           />
-          {/* <ul>
-            {baseset.map((card) => { //Notice the difference: If you point map into square branckets, it expects a function to  be called for each element. If you point into parenthesis, you can take properties of each element out and map them to components
-              <li>
-                <img src={card.path} />
-              </li>;
-            })}
-          </ul> */}
         </div>
         <br />
         <br />
