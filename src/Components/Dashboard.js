@@ -20,40 +20,6 @@ const baseset = [
   { id: 11, path: "/baseset/mewtwo-base-set-bs-10.jpeg" },
 ];
 
-// { id: 3, path: "/baseset/venusaur-base-set-bs-15.jpeg" },
-// { id: 4, path: "/baseset/squitle-base-set-bs-63.jpeg" },
-// { id: 5, path: "/baseset/wartortle-base-set-bs-42.jpeg" },
-// { id: 6, path: "/baseset/blastoise-base-set-bs-2.jpeg" },
-// { id: 7, path: "/baseset/charmander-base-set-bs-46.jpeg" },
-// { id: 8, path: "/baseset/charmeleon-base-set-bs-24.jpeg" },
-// { id: 9, path: "/baseset/charizard-base-set-bs-4.jpeg" },
-// { id: 10, path: "/baseset/pickachu-base-set-bs-58.jpeg" },
-// { id: 11, path: "/baseset/mewtwo-base-set-bs-10.jpeg" },
-
-// function getBaseSet() {
-//   const baseset = [
-//     { id: 1, path: "/baseset/bulbasaur-base-set-bs-44.jpeg" },
-//     { id: 2, path: "/baseset/ivysaur-base-set-bs-30.jpeg" },
-//     { id: 3, path: "/baseset/venusaur-base-set-bs-15.jpeg" },
-//     { id: 4, path: "/baseset/squitle-base-set-bs-63.jpeg" },
-//     { id: 5, path: "/baseset/wartortle-base-set-bs-42.jpeg" },
-//     { id: 6, path: "/baseset/blastoise-base-set-bs-2.jpeg" },
-//     { id: 7, path: "/baseset/charmander-base-set-bs-46.jpeg" },
-//     { id: 8, path: "/baseset/charmeleon-base-set-bs-24.jpeg" },
-//     { id: 9, path: "/baseset/charizard-base-set-bs-4.jpeg" },
-//     { id: 10, path: "/baseset/pickachu-base-set-bs-58.jpeg" },
-//     { id: 11, path: "/baseset/mewtwo-base-set-bs-10.jpeg" },
-//   ];
-
-//   return (
-//     <>
-//       {baseset.forEach((card) => {
-//         <img src={card.id} />;
-//       })}
-//     </>
-//   );
-// }
-
 //To do. 1. Get the current users ID and save it in a pointer before saving data.
 //Could the cards database also just have a setID? Give all cards a setID.
 
@@ -61,11 +27,23 @@ function Dashboard() {
   //Next goal: Save some data on behalf of that user, and render it to the dashboard
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(null);
+  const [userId, setUserId] = useState(""); //Set the pointers in the useEffect
   const [logOut, setLogOut] = useState(false);
 
   useEffect(() => {
     setTimeout(console.log("Timeout", 1000));
     getCurrentUser();
+    //console.log(currentUser.id);
+    setUserId(currentUser.id);
+
+    //console.log(userId);
+
+    //console.log(userPointer);
+
+    // getCurrentUser().then((curUser) => {
+    //   setUserId(curUser.objectId);
+    // }); //await
+    //setUserId(currentUser.objectId);
   }, [logOut]);
 
   async function getCurrentUser() {
@@ -93,12 +71,23 @@ function Dashboard() {
     }
   };
 
-  function handleClickSave() {}
-  const [userId, setUserId] = useState("");
+  const [cardId, setCardId] = useState("");
+  var cardPointer = {
+    __type: "Pointer",
+    className: "Card",
+    objectId: cardId,
+  };
+
+  const handleClickSave = async function () {
+    //Need to get the objectID
+    let query = Parse.Query("Card");
+    query.contains("number"); //How do I get the id out of the current card?
+  };
+
   var userPointer = {
     __type: "Pointer",
     className: "User",
-    objectId: userId,
+    objectId: userId, //Notice hpw you can just get the properties of currentuser diretly when calling it in useEffect like this
   };
 
   if (logOut === true) {
