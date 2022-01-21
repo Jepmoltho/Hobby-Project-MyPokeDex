@@ -88,10 +88,4 @@ function UserLogin() {
   }
 }
 
-const styles = {
-  input: {
-    margin: 50,
-  },
-};
-
 export default UserLogin;

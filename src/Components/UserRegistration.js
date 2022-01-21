@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Parse from "parse";
 import Header from "./Header";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ function UserRegistration() {
     setPassword(e.target.value);
   };
 
-  const [createUser, setCreateUser] = useState(false);
+  //const [createUser, setCreateUser] = useState(false);
 
   const doUserRegistration = async function () {
     const usernameValue = username;
@@ -22,12 +22,13 @@ function UserRegistration() {
     // Since the signUp method returns a Promise, we need to call it using await
     return await Parse.User.signUp(usernameValue, passwordValue)
       .then((createdUser) => {
-        setCreateUser(true);
+        //setCreateUser(true);
         alert(
           "Succes! User " +
             createdUser.getUsername() +
             " was succesfully created!"
         );
+        navigate("/login");
         return true;
       })
       .catch((error) => {
@@ -36,12 +37,16 @@ function UserRegistration() {
       });
   };
 
-  useEffect(() => {
-    setTimeout(console.log("Timeout", 1000));
-    if (createUser === true) {
-      navigate("/login");
-    }
-  }, [createUser]);
+  // useEffect(() => {
+  //   setTimeout(console.log("Timeout", 1000));
+  //   let createdUser = createUser;
+  //   if (createdUser === true) {
+  //     navigate("/login");
+  //   }
+  //   return () => {
+  //     createdUser = false;
+  //   };
+  // }, [createUser, navigate]);
 
   return (
     <>
